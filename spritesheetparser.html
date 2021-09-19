@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sprite Sheet Parsing and Formatting</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <script type="application/json" src="init.json"></script>
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="body-blackout"></div>
+      <div class="dragndrop" id="dragndrop">
+        <img src="" id="spritesheet" alt="" />
+        <canvas class="cnv" id="cnv"></canvas>
+        <input type="file" class="dropfile" id="dropfile" name="myfile" />
+        <span class="dndtext" id="dndtext">Drag and Drop spritesheet here</span>
+      </div>
+      <div class="controls">
+        <div class="rowdiv">
+          <label for="rows" class="label">Rows</label>
+          <input onchange="updateGrid()" type="number" width="25" class="input" id="rows" value="1" />
+        </div>
+        <div class="coldiv">
+          <label for="cols" class="label">Columns</label>
+          <input onchange="updateGrid()" type="number" class="input" width="25" id="cols" value="1" />
+        </div>
+        <div class="pxWidthDiv">
+          <label for="pxW" class="label">Pixel Width</label>
+          <input onchange="updateGrid()" type="number" class="input" id="pxW" width="25" value="125" />
+        </div>
+        <div class="pxHeightDiv">
+          <label for="pxH" class="label">Pixel Height</label>
+          <input onchange="updateGrid()" type="number" class="input" id="pxH" width="25" value="125" />
+        </div>
+        <div class="animationDelayDiv">
+          <label for="animDelay" class="label">Animation Delay (ms)</label>
+          <input type="number" class="input" id="animDelay" width="25" value="100" />
+        </div>
+      </div>
+      <div class="sequence">
+        <div><span class="smalltext">Sequence Frames</span></div>
+        <div class="fillarea">
+          <textarea id="seq" class="textarea"></textarea>
+        </div>
+      </div>
+      <div class="prevcontainer">
+        <button class="button" onclick="loadSeq()" id="load">Load Sequence</button>
+        <button class="button" onclick="startLoop()" id="start">Start Preview</button>
+        <button class="button" onclick="stopLoop()" id="stop">Stop Preview</button>
+        <button class="button" onclick="reset()" id="reset">Reset</button>
+        <button class="button" onclick="json()" id="json">Export</button>
+        <div class="preview">
+          <canvas class="previewCnv" id="previewCnv" width="100" height="100"></canvas>
+        </div>
+        <div class="adjustments">
+          <div class="adjcontrol"><label for="index" class="label">Frame Index</label> <input onclick="changeIndex(this)" type="number" class="input" id="index" width="25" value="" /></div>
+          <div class="adjcontrol"><label for="frameX" class="label">Frame X</label> <input onclick="updateframe(this)" type="number" class="input" id="frameX" width="25" value="" /></div>
+          <div class="adjcontrol"><label for="frameY" class="label">Frame Y</label> <input onclick="updateframe(this)" type="number" class="input" id="frameY" width="25" value="" /></div>
+          <div class="adjcontrol"><label for="frameW" class="label">Frame Width</label> <input onclick="updateframe(this)" type="number" class="input" id="frameW" width="25" value="" /></div>
+          <div class="adjcontrol"><label for="frameH" class="label">Frame Height</label> <input onclick="updateframe(this)" type="number" class="input" id="frameH" width="25" value="" /></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="jsonModal">
+      <button class="button" onclick="spitShort()" id="short">Short JSON</button>
+      <button class="button" onclick="spitLong()" id="long">Long JSON</button>
+      <button class="button" onclick="close_modal()" id="close">Exit</button>
+      <textarea id="jsontextarea" class="textarea"></textarea>
+      <div class="icon">
+        <a onclick="copyToClipboard()">
+          <i class="fa fa-copy" style="font-size: 20px; color: white"></i></div>
+        </a>
+        
+    </div>
+    <script>
+      window.onload = function () {
+        initJSON()
+      }
+    </script>
+  </body>
+</html>
