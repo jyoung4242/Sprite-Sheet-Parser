@@ -1,4 +1,4 @@
-var versionString = "v1.0.1"
+var versionString = "v1.0.2"
 var file
 var imageParsingFile
 var spriteSheetCanvas
@@ -13,9 +13,6 @@ var startTime = null
 var sequenceString
 var wrapper
 var jsondata
-
-var currentTitle = document.title
-document.title = currentTitle + " " + versionString
 
 //canvas vars
 var ctx
@@ -51,7 +48,8 @@ sprtX = document.getElementById("frameX")
 sprtY = document.getElementById("frameY")
 sprtW = document.getElementById("frameW")
 sprtH = document.getElementById("frameH")
-
+version = document.getElementById("verisonstring")
+version.innerHTML = `Version: ${versionString}`
 function reset() {
   window.location.reload()
 }
@@ -63,6 +61,12 @@ function startLoop() {
 
 function loadSeq() {
   buildAnimationSequenceObject()
+  //change size of preview canvas too
+  prevCnv.width = parseInt(elemPxW.value)
+  prevCnv.height = parseInt(elemPxH.value)
+  prevCnv.style.width = parseInt(elemPxW.value)
+  prevCnv.style.height = parseInt(elemPxH.value)
+
   animationIndex = 0
   updateUIframeData()
   drawToCanvas()

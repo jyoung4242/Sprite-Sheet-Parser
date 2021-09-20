@@ -3,6 +3,16 @@ body {
   overflow: hidden;
 }
 
+.version {
+  width: 8em;
+  color: white;
+  height: 1em;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  font-size: 0.5vw;
+}
+
 .hidden {
   display: none;
 }
