@@ -1,3 +1,4 @@
+var versionString = "v1.0.1"
 var file
 var imageParsingFile
 var spriteSheetCanvas
@@ -12,6 +13,9 @@ var startTime = null
 var sequenceString
 var wrapper
 var jsondata
+
+var currentTitle = document.title
+document.title = currentTitle + " " + versionString
 
 //canvas vars
 var ctx
@@ -144,17 +148,17 @@ function buildAnimationSequenceObject() {
 function drawToCanvas() {
   //clear canvas
   pCtx.clearRect(0, 0, prevCnv.width, prevCnv.height)
-  pCtx.drawImage(spriteSheet, animationObjects[animationIndex].x, animationObjects[animationIndex].y, animationObjects[animationIndex].width, animationObjects[animationIndex].height, 0, 0, animationObjects[animationIndex].width, animationObjects[animationIndex].height)
+  pCtx.drawImage(spriteSheet, animationObjects[parseInt(selectedSequences[animationIndex])].x, animationObjects[parseInt(selectedSequences[animationIndex])].y, animationObjects[parseInt(selectedSequences[animationIndex])].width, animationObjects[parseInt(selectedSequences[animationIndex])].height, 0, 0, animationObjects[parseInt(selectedSequences[animationIndex])].width, animationObjects[parseInt(selectedSequences[animationIndex])].height)
   animationIndex += 1
   if (animationIndex >= selectedSequences.length) animationIndex = 0
 }
 
 function updateUIframeData() {
   sprtIndex.value = animationIndex
-  sprtX.value = animationObjects[animationIndex].x
-  sprtY.value = animationObjects[animationIndex].y
-  sprtW.value = animationObjects[animationIndex].width
-  sprtH.value = animationObjects[animationIndex].height
+  sprtX.value = animationObjects[parseInt(selectedSequences[animationIndex])].x
+  sprtY.value = animationObjects[parseInt(selectedSequences[animationIndex])].y
+  sprtW.value = animationObjects[parseInt(selectedSequences[animationIndex])].width
+  sprtH.value = animationObjects[parseInt(selectedSequences[animationIndex])].height
 }
 
 function updateGrid() {
